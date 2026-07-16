@@ -33,7 +33,7 @@ faqItems.forEach(function (item) {
 ------------------------------------------------------------------ */
 
 const SUPABASE_URL =
-    "https://cwwnarmrvpvjptytepdo.supabase.com";
+    "https://xiwjyrfobpibwxhriqen.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_5N2xK2Fo_Y8YDLq_Oh1UHg_uiUVfyti";

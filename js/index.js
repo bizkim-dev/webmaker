@@ -161,12 +161,12 @@ function validateContactForm({
         return false;
     }
 
-    const phonePattern = /^[0-9+\-()\s]{5,30}$/;
+   const phonePattern = /^[0-9]{9,11}$/;
 
     if (!phonePattern.test(phone)) {
         alert(
             "연락처 형식이 올바르지 않습니다.\n" +
-            "예: 010-1234-5678"
+            "예: 01012345678 숫자만 입력"
         );
 
         document.getElementById("phone").focus();
@@ -264,6 +264,14 @@ async function uploadInquiryFiles(files) {
     }
 
     return uploadedFiles;
+}
+
+const phoneInput = document.getElementById("phone");
+
+if (phoneInput) {
+    phoneInput.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
 }
 
 if (contactForm) {

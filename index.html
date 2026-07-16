@@ -910,9 +910,10 @@
                             </label>
 
                             <select
-                                id="serviceType"
-                                name="serviceType"
-                            >
+								id="serviceType"
+								name="serviceType"
+								required
+							>
                                 <option value="">
                                     제작 유형을 선택해 주세요.
                                 </option>
@@ -934,6 +935,41 @@
                                 </option>
                             </select>
                         </div>
+						
+						<div class="form-group">
+							<label for="budget">
+								예상 예산
+							</label>
+
+							<select
+								id="budget"
+								name="budget"
+							>
+								<option value="">
+									예상 예산을 선택해 주세요.
+								</option>
+
+								<option value="50만원 미만">
+									50만원 미만
+								</option>
+
+								<option value="50만원 ~ 100만원">
+									50만원 ~ 100만원
+								</option>
+
+								<option value="100만원 ~ 200만원">
+									100만원 ~ 200만원
+								</option>
+
+								<option value="200만원 이상">
+									200만원 이상
+								</option>
+
+								<option value="협의 필요">
+									협의 필요
+								</option>
+							</select>
+						</div>
 
                         <div class="form-group">
                             <label for="message">
@@ -948,17 +984,36 @@
                             ></textarea>
                         </div>
 
-                        <button
-                            type="submit"
-                            class="button button-primary"
-                        >
-                            문의 내용 작성 완료
-                        </button>
+						<div class="form-group">
+							<label for="files">
+								첨부파일
+							</label>
 
-                        <p class="form-notice">
-                            현재 문의폼은 화면 확인용입니다.
-                            이메일 연동 후 실제 문의 접수가 가능합니다.
-                        </p>
+							<input
+								type="file"
+								id="files"
+								name="files"
+								multiple
+								accept=".jpg,.jpeg,.png,.webp,.pdf,.zip,.doc,.docx,.xls,.xlsx"
+							>
+
+							<p class="file-guide">
+								JPG, PNG, WEBP, PDF, ZIP, Word, Excel 파일을 첨부할 수 있습니다.
+								파일당 최대 10MB, 최대 5개까지 가능합니다.
+							</p>
+						</div>
+
+                        <button
+							type="submit"
+							class="button button-primary"
+							id="submitButton"
+						>
+							문의 접수하기
+						</button>
+
+						 <p class="form-notice" id="formNotice">
+							입력하신 내용과 첨부파일은 견적 상담 목적으로만 사용됩니다.
+						</p>
 
                     </form>
 

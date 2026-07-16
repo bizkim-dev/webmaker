@@ -93,24 +93,140 @@ function getDateFolder() {
 
 function validateFiles(files) {
     if (files.length > MAX_FILE_COUNT) {
-        throw new Error(
-            `첨부파일은 최대 ${MAX_FILE_COUNT}개까지 가능합니다.`
+        alert(
+            `첨부파일은 최대 ${MAX_FILE_COUNT}개까지 등록할 수 있습니다.`
         );
+
+        document.getElementById("files").value = "";
+        document.getElementById("files").focus();
+
+        return false;
     }
 
-    files.forEach(function (file) {
+    for (const file of files) {
         if (file.size > MAX_FILE_SIZE) {
-            throw new Error(
-                `${file.name} 파일이 10MB를 초과합니다.`
+            alert(
+                `${file.name}\n` +
+                "파일 크기가 10MB를 초과합니다."
             );
+
+            document.getElementById("files").value = "";
+            document.getElementById("files").focus();
+
+            return false;
         }
 
         if (!ALLOWED_MIME_TYPES.has(file.type)) {
-            throw new Error(
-                `${file.name} 파일 형식은 업로드할 수 없습니다.`
+            alert(
+                `${file.name}\n` +
+                "허용되지 않는 파일 형식입니다."
             );
+
+            document.getElementById("files").value = "";
+            document.getElementById("files").focus();
+
+            return false;
         }
-    });
+    }
+
+    return true;
+}
+
+
+function validateContactForm({
+    customerName,
+    phone,
+    email,
+    projectType,
+    budget,
+    content
+}) {
+    /* 이름 또는 업체명 */
+    if (!customerName) {
+        alert("이름 또는 업체명을 입력해 주세요.");
+        document.getElementById("name").focus();
+        return false;
+    }
+
+    if (customerName.length > 100) {
+        alert("이름 또는 업체명은 100자 이하로 입력해 주세요.");
+        document.getElementById("name").focus();
+        return false;
+    }
+
+    /* 연락처 */
+    if (!phone) {
+        alert("연락처를 입력해 주세요.");
+        document.getElementById("phone").focus();
+        return false;
+    }
+
+    const phonePattern = /^[0-9+\-()\s]{5,30}$/;
+
+    if (!phonePattern.test(phone)) {
+        alert(
+            "연락처 형식이 올바르지 않습니다.\n" +
+            "예: 010-1234-5678"
+        );
+
+        document.getElementById("phone").focus();
+        return false;
+    }
+
+    /* 이메일 */
+    if (!email) {
+        alert("이메일을 입력해 주세요.");
+        document.getElementById("email").focus();
+        return false;
+    }
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        alert(
+            "이메일 형식이 올바르지 않습니다.\n" +
+            "예: example@email.com"
+        );
+
+        document.getElementById("email").focus();
+        return false;
+    }
+
+    if (email.length > 254) {
+        alert("이메일은 254자 이하로 입력해 주세요.");
+        document.getElementById("email").focus();
+        return false;
+    }
+
+    /* 제작 유형 */
+    if (!projectType) {
+        alert("제작 유형을 선택해 주세요.");
+        document.getElementById("serviceType").focus();
+        return false;
+    }
+
+    /* 예상 예산 */
+    if (!budget) {
+        alert("예상 예산을 선택해 주세요.");
+        document.getElementById("budget").focus();
+        return false;
+    }
+
+    /* 문의 내용 */
+    if (!content) {
+        alert("문의 내용을 입력해 주세요.");
+        document.getElementById("message").focus();
+        return false;
+    }
+
+    if (content.length > 5000) {
+        alert("문의 내용은 5000자 이하로 입력해 주세요.");
+        document.getElementById("message").focus();
+        return false;
+    }
+
+    return true;
 }
 
 async function uploadInquiryFiles(files) {
@@ -175,7 +291,7 @@ if (contactForm) {
                 document.getElementById("serviceType").value;
 
             const budget =
-                document.getElementById("budget").value || null;
+                document.getElementById("budget").value;
 
             const content =
                 document.getElementById("message").value.trim();
@@ -186,33 +302,56 @@ if (contactForm) {
             const files =
                 Array.from(fileInput.files || []);
 
-            if (
-                !customerName ||
-                !phone ||
-                !email ||
-                !projectType ||
-                !content
-            ) {
-                alert("필수 입력 항목을 모두 작성해 주세요.");
+            /*
+             * 1. 입력값 유효성 검사
+             * 문제가 있으면 alert 후 여기서 종료
+             * Storage 업로드와 DB 저장은 실행되지 않음
+             */
+            const isFormValid = validateContactForm({
+                customerName,
+                phone,
+                email,
+                projectType,
+                budget,
+                content
+            });
+
+            if (!isFormValid) {
+                return;
+            }
+
+            /*
+             * 2. 첨부파일 유효성 검사
+             */
+            const areFilesValid =
+                validateFiles(files);
+
+            if (!areFilesValid) {
                 return;
             }
 
             try {
-                validateFiles(files);
-
                 submitButton.disabled = true;
-                submitButton.textContent = "문의 접수 중...";
+                submitButton.textContent =
+                    "문의 접수 중...";
 
                 formNotice.textContent =
                     "문의 내용과 첨부파일을 안전하게 접수하고 있습니다.";
 
                 let uploadedFileData = [];
 
+                /*
+                 * 3. 모든 유효성 검사가 끝난 뒤
+                 * 첨부파일 업로드 시작
+                 */
                 if (files.length > 0) {
                     uploadedFileData =
                         await uploadInquiryFiles(files);
                 }
 
+                /*
+                 * 4. Supabase inquiry 테이블 저장
+                 */
                 const { error: inquiryError } =
                     await supabaseClient
                         .from("inquiry")
@@ -242,7 +381,10 @@ if (contactForm) {
                 formNotice.textContent =
                     "문의가 정상적으로 접수되었습니다.";
             } catch (error) {
-                console.error(error);
+                console.error(
+                    "문의 접수 오류:",
+                    error
+                );
 
                 alert(
                     "문의 접수 중 오류가 발생했습니다.\n" +
@@ -253,7 +395,8 @@ if (contactForm) {
                     "문의 접수에 실패했습니다. 잠시 후 다시 시도해 주세요.";
             } finally {
                 submitButton.disabled = false;
-                submitButton.textContent = "문의 접수하기";
+                submitButton.textContent =
+                    "문의 접수하기";
             }
         }
     );

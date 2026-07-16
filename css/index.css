@@ -958,6 +958,22 @@
     font-size: 12px;
 }
 
+/* 필수값 표 */
+.required-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.required-label::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: #2f66eb;
+}
+
 /* 태블릿 */
 
 @media (max-width: 1024px) {
@@ -1129,4 +1145,19 @@
     .portfolio-image {
         height: 220px;
     }
+}
+
+
+/* 필수값 표시 모바일 */
+@media (max-width: 768px) {
+
+    .required-label {
+        gap: 5px;
+    }
+
+    .required-label::after {
+        width: 7px;
+        height: 7px;
+    }
+
 }

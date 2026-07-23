@@ -409,3 +409,132 @@ if (contactForm) {
         }
     );
 }
+
+/* ------------------------------------------------------------------
+포트폴리오 모달창
+------------------------------------------------------------------ */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const portfolioCard = document.querySelector(
+        '[data-portfolio="eastpower"]'
+    );
+    const portfolioModal = document.getElementById("portfolioModal");
+    const portfolioModalClose = document.getElementById(
+        "portfolioModalClose"
+    );
+    const portfolioMainImage = document.getElementById(
+        "portfolioMainImage"
+    );
+    const portfolioThumbnails = document.querySelectorAll(
+        ".portfolio-thumbnail"
+    );
+    const portfolioContactButton = document.getElementById(
+        "portfolioContactButton"
+    );
+
+    let lastFocusedElement = null;
+
+    if (!portfolioCard || !portfolioModal) {
+        return;
+    }
+
+    function openPortfolioModal() {
+        lastFocusedElement = document.activeElement;
+
+        portfolioModal.classList.add("is-open");
+        portfolioModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+
+        window.requestAnimationFrame(() => {
+            portfolioModalClose?.focus();
+        });
+    }
+
+    function closePortfolioModal() {
+        portfolioModal.classList.remove("is-open");
+        portfolioModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+
+        if (lastFocusedElement instanceof HTMLElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    portfolioCard.addEventListener("click", openPortfolioModal);
+
+    portfolioCard.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openPortfolioModal();
+        }
+    });
+
+    portfolioModalClose?.addEventListener(
+        "click",
+        closePortfolioModal
+    );
+
+    portfolioModal.addEventListener("click", (event) => {
+        if (event.target === portfolioModal) {
+            closePortfolioModal();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            portfolioModal.classList.contains("is-open")
+        ) {
+            closePortfolioModal();
+        }
+    });
+
+    portfolioThumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener("click", () => {
+            const imagePath = thumbnail.dataset.image;
+            const imageAlt = thumbnail.dataset.alt || "";
+
+            if (!imagePath || !portfolioMainImage) {
+                return;
+            }
+
+            portfolioMainImage.classList.add("is-changing");
+
+            window.setTimeout(() => {
+                portfolioMainImage.src = imagePath;
+                portfolioMainImage.alt = imageAlt;
+                portfolioMainImage.classList.remove("is-changing");
+            }, 120);
+
+            portfolioThumbnails.forEach((item) => {
+                item.classList.remove("is-active");
+            });
+
+            thumbnail.classList.add("is-active");
+        });
+    });
+
+    portfolioContactButton?.addEventListener("click", () => {
+        closePortfolioModal();
+
+        window.setTimeout(() => {
+            const contactSection =
+                document.getElementById("contact") ||
+                document.getElementById("inquiry");
+
+            if (!contactSection) {
+                return;
+            }
+
+            contactSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }, 250);
+    });
+});
+
+
+/* ------------------------------------------------------------------
+포트폴리오 모달창 끝
+------------------------------------------------------------------ */

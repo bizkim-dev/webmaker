@@ -4,7 +4,7 @@ const contactForm = document.getElementById("contactForm");
 faqItems.forEach(function (item) {
     const question = item.querySelector(".faq-question");
     const answer = item.querySelector(".faq-answer");
-
+ 
     question.addEventListener("click", function () {
         const isOpen = item.classList.contains("active");
 

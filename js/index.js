@@ -429,22 +429,22 @@ const portfolioData = {
 
         images: [
             {
-                src: "/images/eastpower_main.png",
+                src: "/images/eastpowermetal_main.png",
                 alt: "이스트파워메탈 홈페이지 메인 화면",
                 label: "메인"
             },
             {
-                src: "/images/eastpower_product.png",
+                src: "/images/eastpowermetal_product.png",
                 alt: "이스트파워메탈 제품 화면",
                 label: "제품"
             },
             {
-                src: "/images/eastpower_inquiry.png",
+                src: "/images/eastpowermetal_inquiry.png",
                 alt: "이스트파워메탈 문의 화면",
                 label: "문의"
             },
             {
-                src: "/images/eastpower_mobile.png",
+                src: "/images/eastpowermetal_mobile.png",
                 alt: "이스트파워메탈 모바일 화면",
                 label: "모바일"
             }

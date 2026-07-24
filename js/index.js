@@ -414,125 +414,454 @@ if (contactForm) {
 포트폴리오 모달창
 ------------------------------------------------------------------ */
 
-document.addEventListener("DOMContentLoaded", () => {
-    const portfolioCard = document.querySelector(
-        '[data-portfolio="eastpower"]'
-    );
-    const portfolioModal = document.getElementById("portfolioModal");
-    const portfolioModalClose = document.getElementById(
-        "portfolioModalClose"
-    );
-    const portfolioMainImage = document.getElementById(
-        "portfolioMainImage"
-    );
-    const portfolioThumbnails = document.querySelectorAll(
-        ".portfolio-thumbnail"
-    );
-    const portfolioContactButton = document.getElementById(
-        "portfolioContactButton"
+// =========================================================
+// 포트폴리오 데이터
+// =========================================================
+
+const portfolioData = {
+    eastpower: {
+        category: "MANUFACTURING",
+
+        title: "EAST POWER METAL",
+
+        description:
+            "산업용 분전반, 배전반, 계량기함 및 동부스바를 제작하는 기업의 홈페이지입니다. 회사와 제품 정보를 명확하게 전달하고 고객이 온라인으로 견적 문의를 접수할 수 있도록 제작했습니다.",
+
+        images: [
+            {
+                src: "images/portfolio/eastpower-main.jpg",
+                alt: "이스트파워메탈 홈페이지 메인 화면",
+                label: "메인"
+            },
+            {
+                src: "images/portfolio/eastpower-product.jpg",
+                alt: "이스트파워메탈 제품 화면",
+                label: "제품"
+            },
+            {
+                src: "images/portfolio/eastpower-inquiry.jpg",
+                alt: "이스트파워메탈 문의 화면",
+                label: "문의"
+            },
+            {
+                src: "images/portfolio/eastpower-mobile.jpg",
+                alt: "이스트파워메탈 모바일 화면",
+                label: "모바일"
+            }
+        ],
+
+        features: [
+            {
+                title: "반응형 홈페이지",
+                text: "PC, 태블릿, 모바일 화면 최적화"
+            },
+            {
+                title: "제품 관리",
+                text: "관리자 페이지에서 제품 등록·수정·삭제"
+            },
+            {
+                title: "견적 문의",
+                text: "문의 및 첨부파일 접수, 이메일 자동 발송"
+            },
+            {
+                title: "검색 최적화",
+                text: "사이트맵, 메타태그, 검색엔진 등록"
+            }
+        ],
+
+        info: [
+            ["유형", "기업 홈페이지"],
+            ["업종", "전기·제조업"],
+            ["반응형", "적용"],
+            ["관리자", "제품 관리"],
+            ["문의", "메일 연동"]
+        ],
+
+        tech: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Supabase",
+            "Resend",
+            "GitHub Pages"
+        ],
+
+        website: "https://www.eastpowermetal.com"
+    },
+
+    webmaker: {
+        category: "WEB DEVELOPMENT",
+
+        title: "WEBMAKER",
+
+        description:
+            "기업과 소상공인을 위한 홈페이지 제작 서비스를 소개하기 위해 직접 기획하고 디자인부터 개발, 도메인 연결과 배포까지 진행한 홈페이지입니다. 서비스 내용과 제작 비용을 쉽게 확인하고 온라인으로 견적 문의를 접수할 수 있도록 제작했습니다.",
+
+        images: [
+            {
+                src: "images/portfolio/webmaker-main.jpg",
+                alt: "WEBMAKER 홈페이지 메인 화면",
+                label: "메인"
+            },
+            {
+                src: "images/portfolio/webmaker-price.jpg",
+                alt: "WEBMAKER 홈페이지 가격 안내 화면",
+                label: "가격"
+            },
+            {
+                src: "images/portfolio/webmaker-inquiry.jpg",
+                alt: "WEBMAKER 홈페이지 견적 문의 화면",
+                label: "견적 문의"
+            },
+            {
+                src: "images/portfolio/webmaker-mobile.jpg",
+                alt: "WEBMAKER 홈페이지 모바일 화면",
+                label: "모바일"
+            }
+        ],
+
+        features: [
+            {
+                title: "반응형 홈페이지",
+                text: "PC, 태블릿, 모바일 화면 최적화"
+            },
+            {
+                title: "서비스 및 가격 안내",
+                text: "제작 유형별 서비스 내용과 예상 비용 안내"
+            },
+            {
+                title: "견적 문의",
+                text: "고객정보, 예산, 문의내용 및 첨부파일 접수"
+            },
+            {
+                title: "상담 연결",
+                text: "카카오톡 상담과 온라인 문의 기능 연결"
+            },
+            {
+                title: "검색 최적화",
+                text: "사이트맵, 메타태그, 검색엔진 등록"
+            }
+        ],
+
+        info: [
+            ["유형", "서비스 소개 홈페이지"],
+            ["업종", "홈페이지 제작"],
+            ["반응형", "적용"],
+            ["가격 안내", "제작 유형별 구성"],
+            ["문의", "견적 접수·카카오톡 연동"]
+        ],
+
+        tech: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Supabase",
+            "GitHub Pages",
+            "SEO"
+        ],
+
+        website: "https://www.bizwebmaker.com"
+    }
+};
+
+
+// =========================================================
+// DOM 요소
+// =========================================================
+
+const portfolioModal =
+    document.getElementById("portfolioModal");
+
+const portfolioModalDialog =
+    portfolioModal?.querySelector(".portfolio-modal-dialog");
+
+const portfolioModalClose =
+    document.getElementById("portfolioModalClose");
+
+const portfolioModalCategory =
+    document.getElementById("portfolioModalCategory");
+
+const portfolioModalTitle =
+    document.getElementById("portfolioModalTitle");
+
+const portfolioMainImage =
+    document.getElementById("portfolioMainImage");
+
+const portfolioModalThumbnails =
+    document.getElementById("portfolioModalThumbnails");
+
+const portfolioProjectDescription =
+    document.getElementById("portfolioProjectDescription");
+
+const portfolioFeatureList =
+    document.getElementById("portfolioFeatureList");
+
+const portfolioProjectInfo =
+    document.getElementById("portfolioProjectInfo");
+
+const portfolioTechList =
+    document.getElementById("portfolioTechList");
+
+const portfolioSiteLink =
+    document.getElementById("portfolioSiteLink");
+
+const portfolioContactButton =
+    document.getElementById("portfolioContactButton");
+
+const portfolioCards =
+    document.querySelectorAll(
+        ".portfolio-card-button[data-portfolio]"
     );
 
-    let lastFocusedElement = null;
+let lastFocusedPortfolioCard = null;
 
-    if (!portfolioCard || !portfolioModal) {
+
+// =========================================================
+// 모달 내용 변경
+// =========================================================
+
+function setPortfolioContent(portfolioKey) {
+    const data = portfolioData[portfolioKey];
+
+    if (!data) {
+        console.warn(
+            `등록되지 않은 포트폴리오입니다: ${portfolioKey}`
+        );
+
+        return false;
+    }
+
+    portfolioModalCategory.textContent = data.category;
+    portfolioModalTitle.textContent = data.title;
+    portfolioProjectDescription.textContent = data.description;
+    portfolioSiteLink.href = data.website;
+
+    // 대표 이미지
+    const firstImage = data.images[0];
+
+    portfolioMainImage.src = firstImage.src;
+    portfolioMainImage.alt = firstImage.alt;
+
+    // 썸네일
+    portfolioModalThumbnails.innerHTML = data.images
+        .map((image, index) => {
+            return `
+                <button
+                    type="button"
+                    class="portfolio-thumbnail ${
+                        index === 0 ? "is-active" : ""
+                    }"
+                    data-image="${image.src}"
+                    data-alt="${image.alt}"
+                >
+                    <img
+                        src="${image.src}"
+                        alt=""
+                    >
+
+                    <span>${image.label}</span>
+                </button>
+            `;
+        })
+        .join("");
+
+    // 주요 제작 내용
+    portfolioFeatureList.innerHTML = data.features
+        .map((feature) => {
+            return `
+                <li>
+                    <strong>${feature.title}</strong>
+                    <span>${feature.text}</span>
+                </li>
+            `;
+        })
+        .join("");
+
+    // 프로젝트 정보
+    portfolioProjectInfo.innerHTML = data.info
+        .map(([title, value]) => {
+            return `
+                <div>
+                    <dt>${title}</dt>
+                    <dd>${value}</dd>
+                </div>
+            `;
+        })
+        .join("");
+
+    // 사용 기술
+    portfolioTechList.innerHTML = data.tech
+        .map((technology) => {
+            return `<span>${technology}</span>`;
+        })
+        .join("");
+
+    return true;
+}
+
+
+// =========================================================
+// 모달 열기
+// =========================================================
+
+function openPortfolioModal(card) {
+    if (!portfolioModal) {
         return;
     }
 
-    function openPortfolioModal() {
-        lastFocusedElement = document.activeElement;
+    const portfolioKey = card.dataset.portfolio;
+    const contentLoaded = setPortfolioContent(portfolioKey);
 
-        portfolioModal.classList.add("is-open");
-        portfolioModal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
-
-        window.requestAnimationFrame(() => {
-            portfolioModalClose?.focus();
-        });
+    if (!contentLoaded) {
+        return;
     }
 
-    function closePortfolioModal() {
-        portfolioModal.classList.remove("is-open");
-        portfolioModal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
+    lastFocusedPortfolioCard = card;
 
-        if (lastFocusedElement instanceof HTMLElement) {
-            lastFocusedElement.focus();
-        }
+    portfolioModal.classList.add("is-open");
+    portfolioModal.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("modal-open");
+
+    // 모달을 열 때 항상 맨 위에서 시작
+    if (portfolioModalDialog) {
+        portfolioModalDialog.scrollTop = 0;
     }
 
-    portfolioCard.addEventListener("click", openPortfolioModal);
+    portfolioModalClose?.focus();
+}
 
-    portfolioCard.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openPortfolioModal();
-        }
+
+// =========================================================
+// 모달 닫기
+// =========================================================
+
+function closePortfolioModal() {
+    if (!portfolioModal) {
+        return;
+    }
+
+    portfolioModal.classList.remove("is-open");
+    portfolioModal.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("modal-open");
+
+    lastFocusedPortfolioCard?.focus();
+    lastFocusedPortfolioCard = null;
+}
+
+
+// =========================================================
+// 카드 클릭
+// =========================================================
+
+portfolioCards.forEach((card) => {
+    card.addEventListener("click", () => {
+        openPortfolioModal(card);
     });
 
-    portfolioModalClose?.addEventListener(
-        "click",
-        closePortfolioModal
-    );
-
-    portfolioModal.addEventListener("click", (event) => {
-        if (event.target === portfolioModal) {
-            closePortfolioModal();
-        }
-    });
-
-    document.addEventListener("keydown", (event) => {
+    card.addEventListener("keydown", (event) => {
         if (
-            event.key === "Escape" &&
-            portfolioModal.classList.contains("is-open")
+            event.key === "Enter" ||
+            event.key === " "
         ) {
-            closePortfolioModal();
+            event.preventDefault();
+            openPortfolioModal(card);
         }
     });
+});
 
-    portfolioThumbnails.forEach((thumbnail) => {
-        thumbnail.addEventListener("click", () => {
-            const imagePath = thumbnail.dataset.image;
-            const imageAlt = thumbnail.dataset.alt || "";
 
-            if (!imagePath || !portfolioMainImage) {
-                return;
-            }
+// =========================================================
+// 썸네일 클릭
+// 이벤트 위임 방식이므로 프로젝트가 바뀌어도 한 번만 등록
+// =========================================================
 
-            portfolioMainImage.classList.add("is-changing");
+portfolioModalThumbnails?.addEventListener(
+    "click",
+    (event) => {
+        const thumbnail =
+            event.target.closest(".portfolio-thumbnail");
 
-            window.setTimeout(() => {
-                portfolioMainImage.src = imagePath;
-                portfolioMainImage.alt = imageAlt;
-                portfolioMainImage.classList.remove("is-changing");
-            }, 120);
+        if (!thumbnail) {
+            return;
+        }
 
-            portfolioThumbnails.forEach((item) => {
+        const imageSrc = thumbnail.dataset.image;
+        const imageAlt = thumbnail.dataset.alt;
+
+        if (!imageSrc) {
+            return;
+        }
+
+        portfolioMainImage.src = imageSrc;
+        portfolioMainImage.alt =
+            imageAlt || "포트폴리오 화면";
+
+        portfolioModalThumbnails
+            .querySelectorAll(".portfolio-thumbnail")
+            .forEach((item) => {
                 item.classList.remove("is-active");
             });
 
-            thumbnail.classList.add("is-active");
-        });
-    });
+        thumbnail.classList.add("is-active");
+    }
+);
 
-    portfolioContactButton?.addEventListener("click", () => {
+
+// =========================================================
+// 닫기
+// =========================================================
+
+portfolioModalClose?.addEventListener(
+    "click",
+    closePortfolioModal
+);
+
+
+// 모달 검은 배경 클릭 시 닫기
+portfolioModal?.addEventListener(
+    "click",
+    (event) => {
+        if (event.target === portfolioModal) {
+            closePortfolioModal();
+        }
+    }
+);
+
+
+// ESC 키로 닫기
+document.addEventListener(
+    "keydown",
+    (event) => {
+        if (
+            event.key === "Escape" &&
+            portfolioModal?.classList.contains("is-open")
+        ) {
+            closePortfolioModal();
+        }
+    }
+);
+
+
+// =========================================================
+// 홈페이지 제작 문의
+// =========================================================
+
+portfolioContactButton?.addEventListener(
+    "click",
+    () => {
         closePortfolioModal();
 
-        window.setTimeout(() => {
-            const contactSection =
-                document.getElementById("contact") ||
-                document.getElementById("inquiry");
+        const contactSection =
+            document.getElementById("contact");
 
-            if (!contactSection) {
-                return;
-            }
-
-            contactSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }, 250);
-    });
-});
+        contactSection?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+);
 
 
 /* ------------------------------------------------------------------

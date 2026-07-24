@@ -1392,6 +1392,159 @@ body.modal-open {
 }
 
 
+/* ─────────────────────────────────────────
+   카카오톡 문의 영역
+───────────────────────────────────────── */
+
+.kakao-contact-box {
+    margin-top: 36px;
+}
+
+.kakao-contact-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.kakao-contact-divider::before,
+.kakao-contact-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.kakao-contact-divider span {
+    flex-shrink: 0;
+}
+
+.kakao-contact-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 24px 28px;
+
+    background: #fffdf0;
+    border: 1px solid #f4e38b;
+    border-radius: 16px;
+}
+
+.kakao-contact-text strong {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #191919;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.kakao-contact-text p {
+    margin: 0;
+    color: #6b6251;
+    font-size: 14px;
+}
+
+.kakao-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    flex-shrink: 0;
+
+    min-height: 50px;
+    padding: 0 24px;
+
+    background: #fee500;
+    color: #191919;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 8px 20px rgba(25, 25, 25, 0.1);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.kakao-contact-btn:hover {
+    background: #f5dc00;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(25, 25, 25, 0.14);
+}
+
+.kakao-contact-btn:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.28);
+    outline-offset: 3px;
+}
+
+.kakao-icon {
+    font-size: 19px;
+    line-height: 1;
+}
+
+
+/* ─────────────────────────────────────────
+   카카오톡 플로팅 버튼
+───────────────────────────────────────── */
+
+.kakao-floating-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 92px;
+    z-index: 900;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 52px;
+    padding: 0 18px;
+
+    background: #fee500;
+    color: #191919;
+
+    border: 1px solid rgba(25, 25, 25, 0.08);
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.kakao-floating-btn:hover {
+    background: #f5dc00;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.24);
+}
+
+.kakao-floating-btn:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.28);
+    outline-offset: 3px;
+}
+
+.kakao-floating-icon {
+    font-size: 19px;
+    line-height: 1;
+}
+
 
 /* 태블릿 */
 
@@ -1639,3 +1792,53 @@ body.modal-open {
 /* =========================================================
    포트폴리오 모달 반응형 끝
 ========================================================= */
+
+
+
+/* ─────────────────────────────────────────
+   카카오톡
+───────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .kakao-contact-box {
+        margin-top: 28px;
+    }
+
+    .kakao-contact-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+
+        padding: 22px 20px;
+        text-align: center;
+    }
+
+    .kakao-contact-btn {
+        width: 100%;
+        min-height: 52px;
+    }
+
+    .kakao-floating-btn {
+        right: 16px;
+        bottom: 82px;
+
+        width: 52px;
+        height: 52px;
+        min-height: auto;
+        padding: 0;
+
+        border-radius: 50%;
+    }
+
+    .kakao-floating-text {
+        display: none;
+    }
+
+    .kakao-floating-icon {
+        font-size: 21px;
+    }
+}
+
+/* ─────────────────────────────────────────
+   카카오톡 끝
+───────────────────────────────────────── */

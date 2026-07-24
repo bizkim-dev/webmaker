@@ -414,7 +414,7 @@
 		
 		        <div class="portfolio-grid">
 		
-		            <!-- 실제 포트폴리오 -->
+		            <!-- 이스트파워메탈 포트폴리오 -->
 		            <article
 		                class="portfolio-card portfolio-card-button"
 		                data-portfolio="eastpower"
@@ -459,47 +459,52 @@
 		
 		            </article>
 		
-		            <!-- 준비 중 -->
-		            <article class="portfolio-card portfolio-card-coming">
-		
-		                <div class="portfolio-image dark">
-		
-		                    <div class="mini-browser">
-		
-		                        <div class="mini-top">
-		                            <span></span>
-		                            <span></span>
-		                            <span></span>
-		                        </div>
-		
-		                        <div class="mini-screen">
-		                            <div class="mini-title"></div>
-		                            <div class="mini-text"></div>
-		                            <div class="mini-text"></div>
-		                            <div class="mini-text short"></div>
-		                        </div>
-		
-		                    </div>
-		
-		                    <span class="portfolio-coming-label">
-		                        준비 중
-		                    </span>
-		
-		                </div>
-		
-		                <div class="portfolio-content">
-		                    <span class="portfolio-category">
-		                        BUSINESS
-		                    </span>
-		
-		                    <h3>서비스 소개 홈페이지</h3>
-		
-		                    <p>
-		                        제공 서비스와 업무 절차, 주요 강점을 중심으로 제작한 소개형 홈페이지
-		                    </p>
-		                </div>
-		
-		            </article>
+					<!-- WEBMAKER 실제 포트폴리오 -->
+					<article
+					    class="portfolio-card portfolio-card-button"
+					    data-portfolio="webmaker"
+					    tabindex="0"
+					    role="button"
+					    aria-label="WEBMAKER 홈페이지 포트폴리오 자세히 보기"
+					>
+					
+					    <div class="portfolio-image blue">
+					
+					        <!-- WEBMAKER 홈페이지 메인 이미지 -->
+					        <img
+					            src="images/portfolio/webmaker-main.png"
+					            alt="WEBMAKER 홈페이지 메인 화면"
+					            class="portfolio-real-image"
+					        >
+					
+					        <div class="portfolio-hover">
+					            <span>자세히 보기</span>
+					        </div>
+					
+					    </div>
+					
+					    <div class="portfolio-content">
+					
+					        <span class="portfolio-category">
+					            WEB DEVELOPMENT
+					        </span>
+					
+					        <h3>홈페이지 제작 서비스 홈페이지</h3>
+					
+					        <p>
+					            서비스 소개, 제작 가격, 포트폴리오와 견적 문의 기능을 구성한 반응형 홈페이지
+					        </p>
+					
+					        <div class="portfolio-tags">
+					            <span>반응형</span>
+					            <span>가격안내</span>
+					            <span>견적문의</span>
+					            <span>SEO</span>
+					        </div>
+					
+					    </div>
+					
+					</article>
 		
 		            <!-- 준비 중 -->
 		            <article class="portfolio-card portfolio-card-coming">
@@ -1075,6 +1080,133 @@
         </section>
 
     </main>
+
+	<!-- 포트폴리오 상세 모달 모든 프토 모달은 공통!!-->
+		<div
+		    class="portfolio-modal"
+		    id="portfolioModal"
+		    aria-hidden="true"
+		>
+		    <div
+		        class="portfolio-modal-dialog"
+		        role="dialog"
+		        aria-modal="true"
+		        aria-labelledby="portfolioModalTitle"
+		    >
+		
+		        <div class="portfolio-modal-header">
+		
+		            <div>
+		                <span
+		                    class="portfolio-modal-category"
+		                    id="portfolioModalCategory"
+		                >
+		                    MANUFACTURING
+		                </span>
+		
+		                <h2 id="portfolioModalTitle">
+		                    EAST POWER METAL
+		                </h2>
+		            </div>
+		
+		            <button
+		                type="button"
+		                class="portfolio-modal-close"
+		                id="portfolioModalClose"
+		                aria-label="닫기"
+		            >
+		                ×
+		            </button>
+		
+		        </div>
+		
+		        <div class="portfolio-modal-body">
+		
+		            <!-- 이미지 영역 -->
+		            <div class="portfolio-modal-preview">
+		
+		                <div class="portfolio-modal-main-image">
+		                    <img
+		                        src="images/portfolio/eastpower-main.jpg"
+		                        alt="이스트파워메탈 홈페이지 메인 화면"
+		                        id="portfolioMainImage"
+		                    >
+		                </div>
+		
+		                <!-- JS에서 프로젝트별 썸네일을 생성 -->
+		                <div
+		                    class="portfolio-modal-thumbnails"
+		                    id="portfolioModalThumbnails"
+		                ></div>
+		
+		            </div>
+		
+		            <!-- 설명 영역 -->
+		            <div class="portfolio-modal-detail">
+		
+		                <div class="portfolio-modal-description">
+		
+		                    <span class="portfolio-detail-label">
+		                        PROJECT
+		                    </span>
+		
+		                    <h3>프로젝트 소개</h3>
+		
+		                    <p id="portfolioProjectDescription"></p>
+		
+		                    <span class="portfolio-detail-label portfolio-point-label">
+		                        POINT
+		                    </span>
+		
+		                    <h3>주요 제작 내용</h3>
+		
+		                    <ul
+		                        class="portfolio-feature-list"
+		                        id="portfolioFeatureList"
+		                    ></ul>
+		
+		                </div>
+		
+		                <aside class="portfolio-project-info">
+		
+		                    <h3>프로젝트 정보</h3>
+		
+		                    <dl id="portfolioProjectInfo"></dl>
+		
+		                    <div class="portfolio-project-tech">
+		                        <h4>사용 기술</h4>
+		
+		                        <div id="portfolioTechList"></div>
+		                    </div>
+		
+		                    <a
+		                        href="#"
+		                        target="_blank"
+		                        rel="noopener noreferrer"
+		                        class="portfolio-site-link"
+		                        id="portfolioSiteLink"
+		                    >
+		                        실제 홈페이지 보기
+		                        <span>↗</span>
+		                    </a>
+		
+		                    <button
+		                        type="button"
+		                        class="portfolio-contact-link"
+		                        id="portfolioContactButton"
+		                    >
+		                        홈페이지 제작 문의
+		                    </button>
+		
+		                </aside>
+		
+		            </div>
+		
+		        </div>
+		
+		    </div>
+		</div>
+
 
     <!-- 공통 푸터 -->
     <footer class="footer">

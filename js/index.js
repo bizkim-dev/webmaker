@@ -429,22 +429,22 @@ const portfolioData = {
 
         images: [
             {
-                src: "/images/eastpower-main.png",
+                src: "/images/eastpower_main.png",
                 alt: "이스트파워메탈 홈페이지 메인 화면",
                 label: "메인"
             },
             {
-                src: "/images/eastpower-product.png",
+                src: "/images/eastpower_product.png",
                 alt: "이스트파워메탈 제품 화면",
                 label: "제품"
             },
             {
-                src: "/images/eastpower-inquiry.png",
+                src: "/images/eastpower_inquiry.png",
                 alt: "이스트파워메탈 문의 화면",
                 label: "문의"
             },
             {
-                src: "/images/eastpower-mobile.png",
+                src: "/images/eastpower_mobile.png",
                 alt: "이스트파워메탈 모바일 화면",
                 label: "모바일"
             }
@@ -499,22 +499,22 @@ const portfolioData = {
 
         images: [
             {
-                src: "/images/webmaker-main.png",
+                src: "/images/webmaker_main.png",
                 alt: "WEBMAKER 홈페이지 메인 화면",
                 label: "메인"
             },
             {
-                src: "/images/webmaker-price.png",
+                src: "/images/webmaker_price.png",
                 alt: "WEBMAKER 홈페이지 가격 안내 화면",
                 label: "가격"
             },
             {
-                src: "/images/webmaker-inquiry.png",
+                src: "/images/webmaker_inquiry.png",
                 alt: "WEBMAKER 홈페이지 견적 문의 화면",
                 label: "견적 문의"
             },
             {
-                src: "/images/webmaker-mobile.png",
+                src: "/images/webmaker_mobile.png",
                 alt: "WEBMAKER 홈페이지 모바일 화면",
                 label: "모바일"
             }

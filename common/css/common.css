@@ -313,6 +313,24 @@ section {
     font-size: 13px;
 }
 
+.footer-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 12px;
+
+    color: rgba(255,255,255,.75);
+    font-size: 0.95rem;
+
+    text-decoration: none;
+    transition: color .25s;
+}
+
+.footer-email:hover {
+    color: #fff;
+}
+
 /* 맨 위로 버튼 */
 
 .top-button {

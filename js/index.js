@@ -373,16 +373,46 @@ if (contactForm) {
                             file_urls: uploadedFileData
                         });
 
-                if (inquiryError) {
-                    throw new Error(
-                        `문의 저장 실패: ${inquiryError.message}`
-                    );
-                }
-
-                alert(
-                    "문의가 정상적으로 접수되었습니다.\n" +
-                    "확인 후 연락드리겠습니다."
-                );
+              if (inquiryError) {
+                                throw new Error(
+                                    `문의 저장 실패: ${inquiryError.message}`
+                                );
+                            }
+                            
+                            /*
+                             * 5. Edge Function 호출 → Resend 메일 발송
+                             */
+                            const { error: mailError } =
+                                await supabaseClient.functions.invoke(
+                                    "send-inquiry-mail",
+                                    {
+                                        body: {
+                                            customer_name: customerName,
+                                            phone: phone,
+                                            email: email,
+                                            project_type: projectType,
+                                            budget: budget,
+                                            content: content,
+                                            file_urls: uploadedFileData
+                                        }
+                                    }
+                                );
+                            
+                            if (mailError) {
+                                console.error(
+                                    "메일 발송 실패:",
+                                    mailError
+                                );
+                            
+                                throw new Error(
+                                    `문의는 저장되었지만 메일 발송에 실패했습니다: ${mailError.message}`
+                                );
+                            }
+                            
+                            alert(
+                                "문의가 정상적으로 접수되었습니다.\n" +
+                                "확인 후 연락드리겠습니다."
+                            );
 
                 contactForm.reset();
 

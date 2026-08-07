@@ -1,0 +1,836 @@
+/* =========================================================
+   PRICE PAGE
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.price-hero {
+    padding: 155px 0 110px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbff 0%,
+            #ffffff 55%,
+            #f5f8ff 100%
+        );
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.price-hero-inner {
+    text-align: center;
+}
+
+
+.price-hero-label {
+    display: inline-block;
+
+    margin-bottom: 22px;
+    padding: 8px 15px;
+
+    color: var(--primary);
+
+    background: #eff6ff;
+
+    border: 1px solid #dbeafe;
+    border-radius: 100px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.price-hero h1 {
+    margin-bottom: 25px;
+
+    color: var(--dark);
+
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 900;
+
+    line-height: 1.22;
+    letter-spacing: -2px;
+}
+
+
+.price-hero h1 strong {
+    color: var(--primary);
+}
+
+
+.price-hero-inner > p {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    color: var(--gray);
+
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+
+.price-hero-points {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 38px;
+}
+
+
+.price-hero-points span {
+    padding: 10px 16px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 100px;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+
+
+/* =========================================================
+   PRICE CARD
+========================================================= */
+
+.price-intro {
+    background: var(--white);
+}
+
+
+.pricing-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    align-items: stretch;
+
+    gap: 22px;
+
+    margin-top: 55px;
+}
+
+
+.pricing-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 40px 32px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.07);
+}
+
+
+.pricing-card.featured {
+    border: 2px solid var(--primary);
+
+    box-shadow:
+        0 25px 60px rgba(37, 99, 235, 0.14);
+
+    transform: translateY(-12px);
+}
+
+
+.pricing-card.featured:hover {
+    transform: translateY(-16px);
+}
+
+
+.pricing-badge {
+    position: absolute;
+
+    top: -14px;
+    left: 50%;
+
+    padding: 6px 15px;
+
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transform: translateX(-50%);
+}
+
+
+.pricing-type {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.pricing-card h3 {
+    margin-bottom: 10px;
+
+    color: var(--dark);
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+
+.pricing-description {
+    min-height: 75px;
+
+    margin-bottom: 24px;
+
+    color: var(--gray);
+
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+
+.price {
+    margin-bottom: 27px;
+
+    color: var(--dark);
+
+    font-size: 29px;
+    font-weight: 900;
+}
+
+
+.pricing-list {
+    display: grid;
+
+    gap: 13px;
+
+    margin-bottom: 32px;
+}
+
+
+.pricing-list li {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    color: #4b5563;
+
+    font-size: 14px;
+}
+
+
+.check {
+    flex: 0 0 auto;
+
+    color: var(--primary);
+
+    font-weight: 900;
+}
+
+
+.pricing-card .button {
+    width: 100%;
+
+    margin-top: auto;
+}
+
+
+
+
+/* =========================================================
+   비교표
+========================================================= */
+
+.price-compare-section {
+    background: #f8fafc;
+}
+
+
+.compare-table-wrap {
+    margin-top: 50px;
+
+    overflow-x: auto;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+
+.compare-table {
+    width: 100%;
+
+    min-width: 760px;
+
+    border-collapse: collapse;
+}
+
+
+.compare-table th,
+.compare-table td {
+    padding: 20px 22px;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+.compare-table thead th {
+    background: #f8fafc;
+
+    color: var(--dark);
+
+    font-size: 14px;
+    font-weight: 900;
+}
+
+
+.compare-table tbody th {
+    width: 180px;
+
+    color: var(--dark);
+
+    background: #fbfdff;
+
+    font-weight: 800;
+
+    text-align: left;
+}
+
+
+.compare-table tbody td {
+    color: var(--text);
+}
+
+
+.compare-table tr:last-child th,
+.compare-table tr:last-child td {
+    border-bottom: 0;
+}
+
+
+
+
+/* =========================================================
+   가격 결정 요소
+========================================================= */
+
+.price-factor-section {
+    background: var(--white);
+}
+
+
+.price-factor-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-top: 50px;
+}
+
+
+.price-factor-card {
+    padding: 32px 28px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+
+.factor-number {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    margin-bottom: 23px;
+
+    background: var(--primary);
+
+    border-radius: 12px;
+
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+
+.price-factor-card h3 {
+    margin-bottom: 12px;
+
+    color: var(--dark);
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+.price-factor-card p {
+    color: var(--gray);
+
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+
+
+
+/* =========================================================
+   추가 비용
+========================================================= */
+
+.extra-price-section {
+    background: var(--dark);
+}
+
+
+.extra-price-layout {
+    display: grid;
+
+    grid-template-columns:
+        0.8fr 1.2fr;
+
+    gap: 90px;
+}
+
+
+.extra-price-heading .section-label {
+    color: #93c5fd;
+}
+
+
+.extra-price-heading h2 {
+    margin: 15px 0 20px;
+
+    color: var(--white);
+
+    font-size: 38px;
+    font-weight: 900;
+
+    line-height: 1.35;
+    letter-spacing: -1.2px;
+}
+
+
+.extra-price-heading p {
+    max-width: 420px;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+
+.extra-price-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.extra-price-item {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 16px;
+}
+
+
+.extra-price-item > span {
+    flex-shrink: 0;
+
+    color: #60a5fa;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+
+.extra-price-item h3 {
+    margin-bottom: 8px;
+
+    color: var(--white);
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+.extra-price-item p {
+    color: #94a3b8;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.price-faq-section {
+    background: var(--white);
+}
+
+
+.faq-list {
+    max-width: 900px;
+
+    margin: 50px auto 0;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+}
+
+
+.faq-question {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 25px 5px;
+
+    color: var(--dark);
+
+    background: transparent;
+
+    border: 0;
+
+    text-align: left;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+.faq-icon {
+    flex: 0 0 auto;
+
+    margin-left: 20px;
+
+    color: var(--primary);
+
+    font-size: 25px;
+    font-weight: 400;
+
+    transition: 0.25s ease;
+}
+
+
+.faq-answer {
+    max-height: 0;
+
+    overflow: hidden;
+
+    transition: max-height 0.3s ease;
+}
+
+
+.faq-answer p {
+    padding: 0 5px 25px;
+
+    color: var(--gray);
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.price-cta {
+    padding: 100px 0;
+}
+
+
+.price-cta-box {
+    padding: 70px 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f8fafc
+        );
+
+    border: 1px solid #dbeafe;
+    border-radius: 26px;
+
+    text-align: center;
+}
+
+
+.price-cta-box > span {
+    display: block;
+
+    margin-bottom: 17px;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.price-cta-box h2 {
+    color: var(--dark);
+
+    font-size: 34px;
+    font-weight: 900;
+
+    line-height: 1.4;
+    letter-spacing: -1px;
+}
+
+
+.price-cta-box p {
+    max-width: 620px;
+
+    margin: 18px auto 30px;
+
+    color: var(--gray);
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+.price-cta-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 235px;
+    height: 54px;
+
+    padding: 0 30px;
+
+    background: var(--primary);
+
+    border-radius: 10px;
+
+    color: var(--white);
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.price-cta-button:hover {
+    transform: translateY(-2px);
+
+    background: var(--primary-dark);
+}
+
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .pricing-card.featured {
+        transform: none;
+    }
+
+
+    .pricing-card.featured:hover {
+        transform: translateY(-4px);
+    }
+
+
+    .pricing-description {
+        min-height: auto;
+    }
+
+
+    .price-factor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .extra-price-layout {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+}
+
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .price-hero {
+        padding: 120px 0 75px;
+    }
+
+
+    .price-hero h1 {
+        font-size: 38px;
+
+        letter-spacing: -1.3px;
+    }
+
+
+    .price-hero-inner > p {
+        font-size: 15px;
+    }
+
+
+    .price-hero-points {
+        margin-top: 30px;
+    }
+
+
+    .pricing-card {
+        padding: 32px 24px;
+    }
+
+
+    .price {
+        font-size: 27px;
+    }
+
+
+    .price-factor-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .extra-price-heading h2 {
+        font-size: 30px;
+    }
+
+
+    .extra-price-item {
+        padding: 22px 20px;
+    }
+
+
+    .faq-question {
+        font-size: 15px;
+
+        line-height: 1.55;
+    }
+
+
+    .price-cta {
+        padding: 70px 0;
+    }
+
+
+    .price-cta-box {
+        padding: 50px 22px;
+
+        border-radius: 20px;
+    }
+
+
+    .price-cta-box h2 {
+        font-size: 27px;
+    }
+
+}

@@ -370,6 +370,110 @@ section {
     transform: translateY(0);
 }
 
+
+/* ─────────────────────────────────────────
+   카카오톡 플로팅 버튼
+───────────────────────────────────────── */
+
+.kakao-floating-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 92px;
+    z-index: 900;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 52px;
+    padding: 0 18px;
+
+    background: #fee500;
+    color: #191919;
+
+    border: 1px solid rgba(25, 25, 25, 0.08);
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.kakao-floating-btn:hover {
+    background: #f5dc00;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.24);
+}
+
+.kakao-floating-btn:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.28);
+    outline-offset: 3px;
+}
+
+.kakao-floating-icon {
+    font-size: 19px;
+    line-height: 1;
+}
+
+
+/* ─────────────────────────────────────────
+   카카오톡
+───────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .kakao-contact-box {
+        margin-top: 28px;
+    }
+
+    .kakao-contact-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+
+        padding: 22px 20px;
+        text-align: center;
+    }
+
+    .kakao-contact-btn {
+        width: 100%;
+        min-height: 52px;
+    }
+
+    .kakao-floating-btn {
+        right: 16px;
+        bottom: 82px;
+
+        width: 52px;
+        height: 52px;
+        min-height: auto;
+        padding: 0;
+
+        border-radius: 50%;
+    }
+
+    .kakao-floating-text {
+        display: none;
+    }
+
+    .kakao-floating-icon {
+        font-size: 21px;
+    }
+}
+
+/* ─────────────────────────────────────────
+   카카오톡 끝
+───────────────────────────────────────── */
+
+
+
 /* 태블릿 */
 
 @media (max-width: 1024px) {

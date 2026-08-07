@@ -639,46 +639,7 @@
     font-size: 14px;
 }
 
-/* 제작 과정 */
 
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 20px;
-}
-
-.process-item {
-    padding: 30px 25px;
-
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-}
-
-.process-number {
-    display: block;
-    margin-bottom: 25px;
-
-    color: var(--primary);
-
-    font-size: 13px;
-    font-weight: 900;
-}
-
-.process-item h3 {
-    margin-bottom: 10px;
-
-    color: var(--dark);
-
-    font-size: 19px;
-    font-weight: 800;
-}
-
-.process-item p {
-    color: var(--gray);
-    font-size: 14px;
-}
 
 /* 가격 */
 

@@ -363,104 +363,6 @@
     font-size: 15px;
 }
 
-/* 강점 */
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    align-items: center;
-
-    gap: 80px;
-}
-
-.about-visual {
-    position: relative;
-
-    min-height: 500px;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(37, 99, 235, 0.94),
-            rgba(30, 64, 175, 0.96)
-        );
-
-    border-radius: 28px;
-}
-
-.about-shape {
-    position: absolute;
-
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 50%;
-}
-
-.about-shape.one {
-    top: -90px;
-    right: -70px;
-
-    width: 340px;
-    height: 340px;
-}
-
-.about-shape.two {
-    bottom: -130px;
-    left: -80px;
-
-    width: 370px;
-    height: 370px;
-}
-
-.about-panel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    width: calc(100% - 80px);
-    padding: 35px;
-
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 20px;
-
-    transform: translate(-50%, -50%);
-
-    backdrop-filter: blur(15px);
-}
-
-.about-panel small {
-    display: block;
-    margin-bottom: 13px;
-
-    color: rgba(255, 255, 255, 0.7);
-
-    font-weight: 700;
-}
-
-.about-panel strong {
-    display: block;
-    margin-bottom: 25px;
-
-    color: var(--white);
-
-    font-size: 28px;
-    line-height: 1.4;
-}
-
-.about-panel-line {
-    height: 9px;
-    margin-bottom: 12px;
-
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 20px;
-}
-
-.about-panel-line.short {
-    width: 70%;
-}
-
 .feature-list {
     display: grid;
     gap: 25px;
@@ -814,7 +716,6 @@
     }
 
     .hero-grid,
-    .about-grid,
     .contact-wrap {
         grid-template-columns: 1fr;
     }
@@ -828,11 +729,7 @@
         margin: 0 auto;
     }
 
-    .about-visual {
-        min-height: 420px;
-    }
-
-    .service-grid,
+     .service-grid,
 
 }
 
@@ -1118,19 +1015,6 @@
 
     .service-grid,
     
-    .about-grid {
-        gap: 50px;
-    }
-
-    .about-panel {
-        width: calc(100% - 40px);
-        padding: 25px;
-    }
-
-    .about-panel strong {
-        font-size: 23px;
-    }
-
     .contact-wrap {
         gap: 40px;
 
